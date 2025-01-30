@@ -24,8 +24,13 @@ import { v2 as cloudinary } from "cloudinary";
 dotenv.config({
   path: "./.env",
 });
-import { corsOptions } from "./constants/configure.js";
 import { socketAuthenticator } from "./middlewares/auth.js";
+
+const corsOptions = {
+  origin: "https://drixel.netlify.app", // Allow your frontend URL here
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,  // Allow cookies (if needed for sessions/auth)
+};
 
 const app = express();
 const server = createServer(app); // Create HTTP server with Express
